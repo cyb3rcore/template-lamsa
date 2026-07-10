@@ -1,0 +1,7 @@
+{
+  "name": "template-lamsa",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Handlebars templates for create-cyber-stack — Reactify project scaffolding",
+  "type": "module"
+}
