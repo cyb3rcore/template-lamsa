@@ -1,0 +1,29 @@
+import { hydrateRoot, createRoot } from 'react-dom/client'
+import { hydrateRoutes } from '@cyb3rcore/reactify/client'
+import { createHead } from '@unhead/react/client'
+import routes from '$app/routes.js'
+import create from '$app/create.jsx'
+import * as context from '$app/context.js'
+
+async function mount() {
+  const ctxHydration = { ...window.route, ...context }
+  const useHead = createHead()
+  ctxHydration.useHead = useHead
+  const resolvedRoutes = await hydrateRoutes(routes)
+  const routeMap = Object.fromEntries(resolvedRoutes.map((r) => [r.path, r]))
+  const app = create({
+    url: window.location.href,
+    routes: resolvedRoutes,
+    ctxHydration,
+    routeMap,
+  })
+  const root = document.getElementById('root')
+  if (!root) return
+  if (ctxHydration.clientOnly) {
+    createRoot(root).render(app)
+  } else {
+    hydrateRoot(root, app)
+  }
+}
+
+mount()
