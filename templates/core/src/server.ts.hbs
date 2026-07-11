@@ -3,7 +3,11 @@ import Fastify from 'fastify'
 import reactify from '@cyb3rcore/reactify'
 import * as renderer from '@cyb3rcore/reactify/renderer'
 
-const server = Fastify({ logger: true })
+const server = Fastify({
+  logger: {
+    transport: { target: '@fastify/one-line-logger' },
+  },
+})
 
 await server.register(reactify, {
   root: resolve(import.meta.dirname, '..'),

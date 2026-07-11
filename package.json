@@ -2,6 +2,6 @@
   "name": "template-lamsa",
   "private": true,
   "version": "0.1.0",
-  "description": "Handlebars templates for create-cyber-stack — Reactify project scaffolding",
+  "description": "Handlebars templates for create-reactify-app — Minimal reactify project scaffolding (no styling)",
   "type": "module"
 }
